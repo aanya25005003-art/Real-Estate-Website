@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>REAL ESTATE Website</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#e8f0ff;
+}
+header{
+    background:#b22945;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+}
+.container{
+    width:90%;
+    margin:auto;
+    margin-top:25px;
+}
+.filter-box{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+    margin-bottom:25px;
+}
+.filter-box select{
+    padding:10px;
+    width:200px;
+    margin-right:10px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+.properties{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.card{
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px #6e6e6e;
+    padding:10px;
+}
+.card img{
+    width:100%;
+    height:180px;
+    border-radius:10px;
+}
+.card h3{
+    text-align:center;
+    color:#d7516c;
+}
+.price{
+    color:#e17a8f;
+    font-weight:bold;
+    text-align:center;
+}
+button{
+    margin-top: 10px;
+
+    background:#d7516c;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    width:100%;
+    cursor:pointer;
+}
+button:hover{
+    background:#d7516c;
+}
+.form-box{
+    margin-top:40px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+.form-box input, .form-box textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+.submit-btn{
+    background:#d7516c;
+}
+.submit-btn:hover{
+    background:#571f2a;
+}
+
+footer {
+        text-align: center;
+        padding: 20px;
+        background: #716f6f;
+        margin-top: 20px;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+</style>
+</head>
+<body>
+
+<header>🏠 COMFORT HOME 🏠</header>
+
+<div class="container">
+
+<div class="filter-box">
+    
+    <select id="locationFilter">
+        <option value="all">Select Location</option>
+        <option value="delhi">Delhi</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="lucknow">Lucknow</option>
+    </select>
+
+    <select id="typeFilter">
+        <option value="all">Select Type</option>
+        <option value="house">House</option>
+        <option value="flat">Flat</option>
+        <option value="villa">Villa</option>
+    </select>
+
+    <br>
+
+    <button onclick="filterProperties()">Search</button>
+</div>
+
+<div class="properties" id="propertyList">
+
+    <div class="card" data-location="delhi" data-type="house">
+        <img src="HOU1.jpg">
+        <h3>House</h3>
+        <p class="price">₹85,00,000</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="card" data-location="mumbai" data-type="flat">
+        <img src="HOU2.jpg">
+        <h3>Modern Flat</h3>
+        <p class="price">₹1,20,00,000</p>
+        <button>View Details</button>
+    </div>
+
+    <div class="card" data-location="lucknow" data-type="villa">
+        <img src="HOU3.jpg">
+        <h3>Luxury Villa</h3>
+        <p class="price">₹2,50,00,000</p>
+        <button>View Details</button>
+    </div>
+
+</div>
+
+<div class="form-box">
+    <h2 style="color:#b22945;">Inquiry Form</h2>
+    <input type="text" placeholder="Your Full Name">
+    <input type="email" placeholder="Your Email">
+    <input type="text" placeholder="Property Name">
+    <textarea rows="5" placeholder="Any particular needs"></textarea>
+    <button class="submit-btn">Submit</button>
+</div>
+
+</div>
+<footer>
+    © 2025 COMFORT HOME | All Rights Reserved
+</footer>
+
+
+<script>
+function filterProperties() {
+    let location = document.getElementById("locationFilter").value;
+    let type = document.getElementById("typeFilter").value;
+
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let cardLocation = card.getAttribute("data-location");
+        let cardType = card.getAttribute("data-type");
+
+        if ((location === "all" || location === cardLocation) &&
+            (type === "all" || type === cardType)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
